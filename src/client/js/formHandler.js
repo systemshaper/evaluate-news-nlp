@@ -4,7 +4,7 @@ const getKey = async () => {
     const fetchedKey = await fetch('http://localhost:8081/key')
     .then(res => res.json())
     console.log(fetchedKey)
-    return fetchedKey
+    return fetchedKey.yourKey
 }
 
 const checkIrony = async (text, apiKey) => {
@@ -12,7 +12,7 @@ const checkIrony = async (text, apiKey) => {
     formdata.append("key", apiKey);
     formdata.append("txt", text);
     formdata.append("lang", "en");
-    console.log(formdata);
+    console.log(apiKey);
 
     const requestOptions = {
         method: 'POST',
