@@ -23,6 +23,7 @@ const checkIrony = async (text, apiKey) => {
     fetch("https://api.meaningcloud.com/sentiment-2.1", requestOptions)
     .then(res => res.json())
     .then(function(res) {
+        console.log(res)
         document.getElementById('results').innerHTML = res.irony
     })
 }
