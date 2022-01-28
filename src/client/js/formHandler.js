@@ -28,16 +28,23 @@ const checkIrony = async (text, apiKey) => {
     })
 }
 
+const validateInput = (input) => {
+    if (input.length > 0) {
+        return true
+    } else {
+        window.alert("please enter some text")
+        return false
+    }
+}
+
 function handleSubmit(event) {
     event.preventDefault()
 
     // check what text was put into the form field
-    let formText = document.getElementById('name').value
-
-    getKey().then(key => checkIrony(formText, key))
-    
-    console.log("::: Form Submitted :::")
-
+    let userInput = document.getElementById('name').value
+    if (validateInput(userInput)) {
+        getKey().then(key => checkIrony(userInput, key))
+    }
 }
 
 export { handleSubmit }
