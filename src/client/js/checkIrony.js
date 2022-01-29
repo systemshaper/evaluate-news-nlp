@@ -3,7 +3,6 @@ const checkIrony = async (text, apiKey) => {
     formdata.append("key", apiKey);
     formdata.append("txt", text);
     formdata.append("lang", "en");
-    console.log(apiKey);
 
     const requestOptions = {
         method: 'POST',
@@ -11,12 +10,13 @@ const checkIrony = async (text, apiKey) => {
         redirect: 'follow'
     }
     
-    fetch("https://api.meaningcloud.com/sentiment-2.1", requestOptions)
+    const isIronic = fetch("https://api.meaningcloud.com/sentiment-2.1", requestOptions)
     .then(res => res.json())
     .then(function(res) {
-        console.log(res)
-        document.getElementById('results').innerHTML = res.irony
+        return res.irony
     })
+
+    return isIronic
 }
 
 export { checkIrony }

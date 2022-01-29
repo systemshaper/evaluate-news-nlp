@@ -4,7 +4,6 @@ import { validateInput } from "../index"
 const getKey = async () => {
     const fetchedKey = await fetch('http://localhost:8081/key')
     .then(res => res.json())
-    console.log(fetchedKey)
     return fetchedKey.yourKey
 }
 
@@ -13,9 +12,16 @@ function handleSubmit(event) {
 
     // check what text was put into the form field
     let userInput = document.getElementById('name').value
-    if (validateInput(userInput)) {
-        getKey().then(key => checkIrony(userInput, key))
+    let results = document.getElementById('results')
+    try {
+        if (validateInput(userInput)) {
+            getKey()
+            .then(key => checkIrony(userInput, key))
+            .then(res => results.innerHTML = res)
+        }
+    } catch (error) {
+       console.log(error)
     }
 }
 
-export { handleSubmit }
+export { handleSubmit, getKey }
