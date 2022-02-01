@@ -36,5 +36,12 @@
             <p>I've fallen and I can't get up</p>
         </footer>
 
+        <script>
+            if ('serviceWorker' in navigator) {
+                window.addEventListener('load', () => {
+                    navigator.serviceWorker.register('/service-worker.js');
+                });
+            }
+        </script>
     </body>
 </html>
